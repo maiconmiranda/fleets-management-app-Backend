@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :daily_tracks
   has_many :daily_reports
   has_many :vehicles
+  has_many :incidents
 end

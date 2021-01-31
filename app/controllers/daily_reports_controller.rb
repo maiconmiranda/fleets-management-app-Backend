@@ -1,4 +1,5 @@
 class DailyReportsController < ApplicationController
+  before_action :authenticate_user
   before_action :set_daily_report, only: [:show, :update, :destroy]
 
   # GET /daily_reports
@@ -42,7 +43,7 @@ class DailyReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_report
-      @daily_report = current_user.daily_report.find(params[:id])
+      @daily_report = current_user.daily_reports.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

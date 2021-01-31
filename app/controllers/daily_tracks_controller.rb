@@ -43,7 +43,7 @@ class DailyTracksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_track
-      @daily_track = current_user.daily_track.find(params[:id])
+      @daily_track = current_user.daily_tracks.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
