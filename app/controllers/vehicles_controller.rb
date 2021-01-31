@@ -17,7 +17,8 @@ class VehiclesController < ApplicationController
   # POST /vehicles
   def create
     @vehicle = Vehicle.new(vehicle_params)
-
+    @vehicle.user_id = current_user.id
+    
     if @vehicle.save
       render json: @vehicle, status: :created, location: @vehicle
     else
@@ -47,6 +48,12 @@ class VehiclesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def vehicle_params
-      params.require(:vehicle).permit(:fleet_id, :make, :model, :year, :color, :rego, :rego_expiry_date, :rego_fee, :insurance_provider, :insurance_police_number, :insurance_expiry_date, :insurance_fee, :maintenance_fee, :is_selected, :company_id, :user_id)
+      params.require(:vehicle).permit(
+        :fleet_id, :make, :model, :year, :color, :rego, 
+        :rego_expiry_date, :rego_fee, :insurance_provider, 
+        :insurance_police_number, :insurance_expiry_date, 
+        :insurance_fee, :maintenance_fee, 
+        :is_selected, :company_id, :user_id
+      )
     end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :daily_tracks
   post "/login", to: "user_token#create"
   get "/status", to: "status#index"
   post "/sign-up", to: "users#create"
