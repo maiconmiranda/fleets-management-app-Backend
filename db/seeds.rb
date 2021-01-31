@@ -81,10 +81,22 @@ require "faker"
 #  Daily_report
 # 2.times do
 #     daily_report = DailyReport.new(
-#         description: Faker::TvShows::Simpsons.quote,
+#         description: Faker::Movies::StarWars.quote,
 #         vehicle_id: 1,
 #         user_id: 3,
 #         daily_track_id: 1
 #     )
 #     daily_report.save
 # end
+
+#  Incidents
+2.times do
+    incident = Incident.new(
+        description: Faker::Movies::StarWars.quote,
+        vehicle_id: 1,
+        user_id: 3,
+        daily_track_id: 1
+    )
+    incident.save
+end
+

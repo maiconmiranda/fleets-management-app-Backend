@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :incidents
   resources :daily_reports
   resources :daily_tracks
   post "/login", to: "user_token#create"
