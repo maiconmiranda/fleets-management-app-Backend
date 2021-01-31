@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_130936) do
+ActiveRecord::Schema.define(version: 2021_01_30_131819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,4 +29,19 @@ ActiveRecord::Schema.define(version: 2021_01_30_130936) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "user_name"
+    t.string "driver_license_number"
+    t.date "driver_license_expiry"
+    t.bigint "company_id", null: false
+    t.string "driver_id"
+    t.boolean "is_admin", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_users_on_company_id"
+  end
+
+  add_foreign_key "users", "companies"
 end
