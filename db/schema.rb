@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_032119) do
+ActiveRecord::Schema.define(version: 2021_01_31_034214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 2021_01_31_032119) do
     t.string "state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "daily_reports", force: :cascade do |t|
+    t.text "description"
+    t.bigint "vehicle_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "daily_track_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["daily_track_id"], name: "index_daily_reports_on_daily_track_id"
+    t.index ["user_id"], name: "index_daily_reports_on_user_id"
+    t.index ["vehicle_id"], name: "index_daily_reports_on_vehicle_id"
   end
 
   create_table "daily_tracks", force: :cascade do |t|
@@ -83,6 +95,9 @@ ActiveRecord::Schema.define(version: 2021_01_31_032119) do
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
+  add_foreign_key "daily_reports", "daily_tracks"
+  add_foreign_key "daily_reports", "users"
+  add_foreign_key "daily_reports", "vehicles"
   add_foreign_key "daily_tracks", "users"
   add_foreign_key "daily_tracks", "vehicles"
   add_foreign_key "users", "companies"

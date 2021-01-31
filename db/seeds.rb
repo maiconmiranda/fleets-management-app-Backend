@@ -59,21 +59,32 @@ require "faker"
 #   end
 
   # # Daily_track 
-10.times do
-  odometer_start = Faker::Vehicle.mileage(min: 50_000, max: 80_000)
-  odometer_end = odometer_start + rand(100..220) 
+# 10.times do
+#   odometer_start = Faker::Vehicle.mileage(min: 50_000, max: 80_000)
+#   odometer_end = odometer_start + rand(100..220) 
 
-  daily_track = DailyTrack.new(
-  date: Faker::Date.backward(days: 14),
-  odometer_start: odometer_start,
-  odometer_end: odometer_end,
-  fuel_fee: Faker::Number.decimal(l_digits: 2, r_digits: 2),
-  parking_fee: Faker::Number.decimal(l_digits: 1, r_digits: 2),
-  fines: Faker::Number.decimal(l_digits: 3, r_digits: 2),
-  other_fee: Faker::Number.decimal(l_digits: 2, r_digits: 2),
-  other_fee_description: Faker::ChuckNorris.fact,
-  vehicle_id: 1,
-  user_id: 3
-  )
-  daily_track.save
-end
+#   daily_track = DailyTrack.new(
+#   date: Faker::Date.backward(days: 14),
+#   odometer_start: odometer_start,
+#   odometer_end: odometer_end,
+#   fuel_fee: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+#   parking_fee: Faker::Number.decimal(l_digits: 1, r_digits: 2),
+#   fines: Faker::Number.decimal(l_digits: 3, r_digits: 2),
+#   other_fee: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+#   other_fee_description: Faker::ChuckNorris.fact,
+#   vehicle_id: 1,
+#   user_id: 3
+#   )
+#   daily_track.save
+# end
+
+#  Daily_report
+# 2.times do
+#     daily_report = DailyReport.new(
+#         description: Faker::TvShows::Simpsons.quote,
+#         vehicle_id: 1,
+#         user_id: 3,
+#         daily_track_id: 1
+#     )
+#     daily_report.save
+# end
