@@ -53,17 +53,20 @@ ActiveRecord::Schema.define(version: 2021_01_31_002331) do
     t.date "rego_expiry_date"
     t.decimal "rego_fee"
     t.string "insurance_provider"
-    t.string "insurance_police_number"
+    t.string "insurance_policy_number"
     t.date "insurance_expiry_date"
     t.decimal "insurance_fee"
     t.decimal "maintenance_fee"
     t.boolean "is_selected", default: false
     t.bigint "company_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_vehicles_on_company_id"
+    t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
   add_foreign_key "users", "companies"
   add_foreign_key "vehicles", "companies"
+  add_foreign_key "vehicles", "users"
 end

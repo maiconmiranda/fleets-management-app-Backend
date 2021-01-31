@@ -25,16 +25,16 @@ require "faker"
 # end
 
 # user admin or company by id 1
-User.create(
+# User.create(
     
-    email: Company.find_by(id: 2).email,
-    password: "password",
-    user_name: Company.find_by(id: 2).company_name,
-    driver_license_number: Faker::DrivingLicence.usa_driving_licence,
-    # driver_license_expiry: Faker::Date.in_date_period(year: 2022, month: 11),
-    company_id: 2,
-    driver_id: Faker::IDNumber.valid
-)
+#     email: Company.find_by(id: 2).email,
+#     password: "password",
+#     user_name: Company.find_by(id: 2).company_name,
+#     driver_license_number: Faker::DrivingLicence.usa_driving_licence,
+#     # driver_license_expiry: Faker::Date.in_date_period(year: 2022, month: 11),
+#     company_id: 2,
+#     driver_id: Faker::IDNumber.valid
+# )
 
 # Vehicle
 5.times do 
@@ -49,10 +49,11 @@ User.create(
       rego_expiry_date: Faker::Date.forward(days: 260),
       rego_fee: Faker::Number.decimal(l_digits: 3, r_digits: 2),
       insurance_provider: "The Insurance Co",
-      insurance_police_number: Faker::Alphanumeric.alphanumeric(number: 10),
+      insurance_policy_number: Faker::Alphanumeric.alphanumeric(number: 10),
       insurance_expiry_date: Faker::Date.forward(days: 260),
       insurance_fee: Faker::Number.decimal(l_digits: 3, r_digits: 2),
       maintenance_fee: Faker::Number.decimal(l_digits: 3, r_digits: 2),
-      company_id: 2
+      company_id: 1,
+      user_id: 1
     )
   end

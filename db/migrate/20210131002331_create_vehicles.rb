@@ -10,12 +10,13 @@ class CreateVehicles < ActiveRecord::Migration[6.1]
       t.date :rego_expiry_date
       t.decimal :rego_fee
       t.string :insurance_provider
-      t.string :insurance_police_number
+      t.string :insurance_policy_number
       t.date :insurance_expiry_date
       t.decimal :insurance_fee
       t.decimal :maintenance_fee
       t.boolean :is_selected, default: false
       t.references :company, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
