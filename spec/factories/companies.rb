@@ -16,10 +16,7 @@ FactoryBot.define do
 
         trait :invalid do
           company_name { nil }
-        end
 
-        trait :update do
-            copmany_name { 'Comapny Updated Name'}
         end
     end
 end

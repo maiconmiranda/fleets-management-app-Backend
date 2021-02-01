@@ -12,8 +12,13 @@ FactoryBot.define do
     end
     driver_license_expiry {Time.current + 200.days}
     association :company
+
     sequence :driver_id do |n|
       "C#{n}"
+    end
+
+    trait :invalid do
+      email { nil }
     end
   end
 end
