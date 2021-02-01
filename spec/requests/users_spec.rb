@@ -25,43 +25,43 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "POST users#create" do
-    context 'when the user is valid' do
-      before(:example) do
-        @user_params = FactoryBot.attributes_for(:user)
-        post "/sign-up", params: { user: @user_params }
-      end
+  # describe "POST users#create" do
+  #   context 'when the user is valid' do
+  #     before(:example) do
+  #       @user_params = FactoryBot.attributes_for(:user)
+  #       post "/sign-up", params: { user: @user_params }
+  #     end
   
-      it 'returns http created' do
-        expect(response).to have_http_status(:created)
-      end
+  #     it 'returns http created' do
+  #       expect(response).to have_http_status(:created)
+  #     end
   
-      it 'saves the user to the database' do
-        expect(User.last.email).to eq(
-          @user_params[:email]
-        )
-      end
-    end
+  #     it 'saves the user to the database' do
+  #       expect(User.last.email).to eq(
+  #         @user_params[:email]
+  #       )
+  #     end
+  #   end
 
-    context 'when user is invalid' do
-      before(:example) do
-      @user_params = FactoryBot.attributes_for(:user, :invalid)
-      post "/sign-up", params: { user: @user_params }
-      @json_response = JSON.parse(response.body)
-      end
+  #   context 'when user is invalid' do
+  #     before(:example) do
+  #     @user_params = FactoryBot.attributes_for(:user, :invalid)
+  #     post "/sign-up", params: { user: @user_params }
+  #     @json_response = JSON.parse(response.body)
+  #     end
 
-      it 'return http unprocessable entity' do
-        expect(response).to have_http_status(:unprocessable_entity)
-        p response
-      end
+  #     it 'return http unprocessable entity' do
+  #       expect(response).to have_http_status(:unprocessable_entity)
+  #       p response
+  #     end
 
-      it 'returns the correct number of errors' do
-        expect(@json_response.count).to eq(1)
-      end
+  #     it 'returns the correct number of errors' do
+  #       expect(@json_response.count).to eq(1)
+  #     end
 
-      it 'errors contain the correct error message' do
-        expect(@json_response.first).to eq("Email can't be blank")
-      end
-    end
-  end
+  #     it 'errors contain the correct error message' do
+  #       expect(@json_response.first).to eq("Email can't be blank")
+  #     end
+  #   end
+  # end
 end
