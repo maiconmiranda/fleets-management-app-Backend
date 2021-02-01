@@ -47,3 +47,7 @@ gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master', ref: '921
 # get random names for seed the database
 gem 'faker'
 
+#  to get the test coverage
+group :test do
+  gem 'simplecov', require: false
+end

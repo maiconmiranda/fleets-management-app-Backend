@@ -1,10 +1,10 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_user, except: [:create] 
+  before_action :authenticate_user, except: [:create, :index] 
   before_action :set_company, only: [:show, :update, :destroy]
 
   # GET /companies
   def index
-    @companies = current_user.company
+    @companies = Company.all
 
     render json: @companies
   end
@@ -21,7 +21,7 @@ class CompaniesController < ApplicationController
     if @company.save
       render json: @company, status: :created, location: @company
     else
-      render json: @company.errors, status: :unprocessable_entity
+      render json: @company.errors.full_messages, status: :unprocessable_entity
     end
   end
 
