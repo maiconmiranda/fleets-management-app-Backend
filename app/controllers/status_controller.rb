@@ -4,5 +4,9 @@ class StatusController < ApplicationController
     def index
         render json: { message: 'logged in' }
       end
+
+      def user
+        render json: { current_user: current_user }
+      end
   end
   
