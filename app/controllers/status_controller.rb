@@ -2,7 +2,7 @@ class StatusController < ApplicationController
     before_action :authenticate_user
   
     def index
-        render json: { current_user: current_user }
+        render json:  current_user 
       end
 
       def user
