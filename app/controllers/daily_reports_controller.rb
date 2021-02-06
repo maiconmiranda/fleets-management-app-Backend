@@ -43,7 +43,7 @@ class DailyReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_report
-      @daily_report = Daily_reports.find(params[:id])
+      @daily_report = Daily_report.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
