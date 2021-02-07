@@ -1,10 +1,10 @@
 class DailyTracksController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:index, :show]
   before_action :set_daily_track, only: [:show, :update, :destroy]
 
   # GET /daily_tracks
   def index
-    @daily_tracks = current_user.daily_tracks
+    @daily_tracks = DailyTrack.all
 
     render json: @daily_tracks
   end
@@ -51,7 +51,7 @@ class DailyTracksController < ApplicationController
       params.require(:daily_track).permit(
         :date, :odometer_start, :odometer_end, :fuel_fee, 
         :parking_fee, :fines, :other_fee, :other_fee_description, 
-        :user_id, :vehicle_id
+        :user_id, :vehicle_id, :company_id
       )
     end
 end
