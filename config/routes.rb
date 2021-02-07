@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "/login", to: "user_token#create"
   get "/status", to: "status#index"
   post "/sign-up", to: "users#create"
+  get "/users-company", to: "user#user_company"
   resources :users, except: [:create]
   resources :companies
   resources :vehicles
