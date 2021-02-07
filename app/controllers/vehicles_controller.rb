@@ -51,7 +51,7 @@ class VehiclesController < ApplicationController
       params.require(:vehicle).permit(
         :fleet_id, :make, :model, :year, :color, :rego, 
         :rego_expiry_date, :rego_fee, :insurance_provider, 
-        :insurance_police_number, :insurance_expiry_date, 
+        :insurance_policy_number, :insurance_expiry_date, 
         :insurance_fee, :maintenance_fee, 
         :is_selected, :company_id, :user_id
       )
