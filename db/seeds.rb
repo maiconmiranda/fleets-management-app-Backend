@@ -52,9 +52,45 @@ user = User.new(
 user.save
 end
 
+# User as drivers for Company 2
+10.times do
+user = User.new(
+    email: Faker::Internet.email,
+    password: "password",
+    user_name: Company.find_by(id: 1).company_name,
+    driver_license_number: Faker::DrivingLicence.usa_driving_licence,
+    driver_license_expiry: Faker::Date.forward(days: 260),
+    company_id: 2,
+    driver_id: Faker::IDNumber.valid
+)
+user.save
+end
+
 
 # Vehicle for company 1
 10.times do 
+    make = Faker::Vehicle.make
+    Vehicle.create(
+      fleet_id: Faker::Alphanumeric.alphanumeric(number: 4, min_alpha: 1),
+      make: make,
+      model: Faker::Vehicle.model(make_of_model: make),
+      year: Faker::Vehicle.year,
+      color: Faker::Vehicle.color,
+      rego: Faker::Vehicle.license_plate,
+      rego_expiry_date: Faker::Date.forward(days: 260),
+      rego_fee: Faker::Number.decimal(l_digits: 3, r_digits: 2),
+      insurance_provider: "The Insurance Co",
+      insurance_policy_number: Faker::Alphanumeric.alphanumeric(number: 10),
+      insurance_expiry_date: Faker::Date.forward(days: 260),
+      insurance_fee: Faker::Number.decimal(l_digits: 3, r_digits: 2),
+      maintenance_fee: Faker::Number.decimal(l_digits: 3, r_digits: 2),
+      company_id: 1,
+      user_id: 1
+    )
+  end
+
+  # Vehicle for company 2
+5.times do 
     make = Faker::Vehicle.make
     Vehicle.create(
       fleet_id: Faker::Alphanumeric.alphanumeric(number: 4, min_alpha: 1),
@@ -155,6 +191,27 @@ end
   vehicle_id: 1,
   user_id: 4,
   company_id: 1
+  )
+  daily_track.save
+end
+
+# Daily_track for Company 2
+10.times do
+  odometer_start = Faker::Vehicle.mileage(min: 50_000, max: 80_000)
+  odometer_end = odometer_start + rand(100..220) 
+
+  daily_track = DailyTrack.new(
+  date: Faker::Date.backward(days: 14),
+  odometer_start: odometer_start,
+  odometer_end: odometer_end,
+  fuel_fee: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+  parking_fee: Faker::Number.decimal(l_digits: 1, r_digits: 2),
+  fines: Faker::Number.decimal(l_digits: 3, r_digits: 2),
+  other_fee: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+  other_fee_description: Faker::ChuckNorris.fact,
+  vehicle_id: 13,
+  user_id: 14,
+  company_id: 2
   )
   daily_track.save
 end
