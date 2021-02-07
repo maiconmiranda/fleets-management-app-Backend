@@ -9,10 +9,23 @@ class DailyTracksController < ApplicationController
     render json: @daily_tracks
   end
 
+  
+  # GET all daily 
+  def daily_tracks_all
+    user_company = current_user.company.users
+    @daily_tracks_belongs_to_company = user_company.joins(daily_tracks: :user)
+
+    render json: @daily_tracks
+  end
+
   # GET /daily_tracks/1
   def show
     render json: @daily_track
   end
+ 
+  
+  # GET /daily_tracks/1
+
 
   # POST /daily_tracks
   def create

@@ -90,7 +90,7 @@ end
   end
 
   # Vehicle for company 2
-5.times do 
+10.times do 
     make = Faker::Vehicle.make
     Vehicle.create(
       fleet_id: Faker::Alphanumeric.alphanumeric(number: 4, min_alpha: 1),
@@ -106,8 +106,8 @@ end
       insurance_expiry_date: Faker::Date.forward(days: 260),
       insurance_fee: Faker::Number.decimal(l_digits: 3, r_digits: 2),
       maintenance_fee: Faker::Number.decimal(l_digits: 3, r_digits: 2),
-      company_id: 1,
-      user_id: 1
+      company_id: 2,
+      user_id: 12
     )
   end
 

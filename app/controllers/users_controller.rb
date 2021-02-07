@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   end
 
   def user_company
-    @users = current_user.company.users
+    @users_from_company = current_user.company.users
 
-    render json: @users
+    render json: @users_from_company
   end
 
   # GET /users/1

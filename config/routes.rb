@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :incidents
   resources :daily_reports
+
+
   resources :daily_tracks
+  get "/daily-tracks-company", to: "daily_tracks#daily_tracks_all" 
+
   post "/login", to: "user_token#create"
   get "/status", to: "status#index"
   post "/sign-up", to: "users#create"
