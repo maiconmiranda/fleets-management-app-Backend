@@ -4,4 +4,5 @@ class DailyTrack < ApplicationRecord
   belongs_to :company
   has_many :daily_reports
   has_many :incidents
+
 end

@@ -6,7 +6,7 @@ class StatusController < ApplicationController
       end
 
       def user
-        render json: { current_user.id }
+        render json: { }
       end
   end
   

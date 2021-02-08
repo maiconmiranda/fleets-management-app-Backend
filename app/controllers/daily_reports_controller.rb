@@ -6,6 +6,7 @@ class DailyReportsController < ApplicationController
   # GET /daily_reports
   def index
     @daily_reports = current_user.daily_reports
+    
 
     render json: @daily_reports
   end
