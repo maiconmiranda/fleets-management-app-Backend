@@ -1,6 +1,7 @@
 class DailyReportsController < ApplicationController
   before_action :authenticate_user
   before_action :set_daily_report, only: [:show, :update, :destroy]
+  before_action :find_daily_report_by_vehicle, only: [:show_daily_report_sorted_vehicle]
 
   # GET /daily_reports
   def index
@@ -15,6 +16,14 @@ class DailyReportsController < ApplicationController
   
       render json: @user_company_daily_reports 
     end
+
+
+     # GET all daily_reports that has the selected id.
+  def show_daily_report_sorted_vehicle
+    render json: @daily_report_by_vehicle
+  end
+
+
 
   # GET /daily_reports/1
   def show
@@ -52,6 +61,11 @@ class DailyReportsController < ApplicationController
     def set_daily_report
       @daily_report = Daily_report.find(params[:id])
     end
+
+      # looks for daily_reports that has the selected vehicle id.
+      def find_daily_report_by_vehicle
+        @daily_report_by_vehicle = current_user.company.daily_reports.where(vehicle_id: params[:id])
+      end
 
     # Only allow a list of trusted parameters through.
     def daily_report_params

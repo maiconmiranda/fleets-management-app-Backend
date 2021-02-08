@@ -1,6 +1,7 @@
 class DailyTracksController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
   before_action :set_daily_track, only: [:show, :update, :destroy]
+  before_action :find_daily_track_by_vehicle, only: [:show_daily_track_sorted_vehicle]
 
   # GET /daily_tracks
   def index
@@ -22,9 +23,12 @@ class DailyTracksController < ApplicationController
   def show
     render json: @daily_track
   end
- 
-  
-  # GET /daily_tracks/1
+
+  # GET all daily_tracks that has the selected id.
+  def show_daily_track_sorted_vehicle
+    render json: @daily_track_by_vehicle
+  end
+
 
 
   # POST /daily_tracks
@@ -57,6 +61,11 @@ class DailyTracksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_track
       @daily_track = DailyTrack.find(params[:id])
+    end
+
+    # looks for daily_tracks that has the selected vehicle id.
+    def find_daily_track_by_vehicle
+      @daily_track_by_vehicle = current_user.company.daily_tracks.where(vehicle_id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
