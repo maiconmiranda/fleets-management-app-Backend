@@ -1,5 +1,5 @@
 class DailyTracksController < ApplicationController
-  before_action :authenticate_user, except: [:index, :show]
+  before_action :authenticate_user, except: [:index, :show, :crate]
   before_action :set_daily_track, only: [:show, :update, :destroy]
   before_action :find_daily_track_by_vehicle, only: [:show_daily_track_sorted_vehicle]
 
@@ -34,7 +34,6 @@ class DailyTracksController < ApplicationController
   # POST /daily_tracks
   def create
     @daily_track = DailyTrack.new(daily_track_params)
-    @daily_track.user_id = current_user.id
 
     if @daily_track.save
       render json: @daily_track, status: :created, location: @daily_track
