@@ -1,6 +1,7 @@
 class VehiclesController < ApplicationController
   before_action :authenticate_user
   before_action :set_vehicle, only: [:show, :update, :destroy]
+  before_action :find_vehicle_by_company, only: [:show_vehicle_from_company]
 
   # GET /vehicles
   def index
@@ -20,6 +21,11 @@ class VehiclesController < ApplicationController
   def show
     render json: @vehicle
   end
+
+    # GET vehicle from company
+    def show_vehicle_from_company
+      render json: @vehicle_from_company
+    end
 
   # POST /vehicles
   def create
@@ -52,6 +58,11 @@ class VehiclesController < ApplicationController
     def set_vehicle
       @vehicle = Vehicle.find(params[:id])
     end
+
+        # looks for vehicle that belongs to company
+        def find_vehicle_by_company
+          @vehicle_from_company = current_user.company.vehicles.where(id: params[:id])
+        end
 
     # Only allow a list of trusted parameters through.
     def vehicle_params

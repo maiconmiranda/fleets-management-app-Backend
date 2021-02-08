@@ -24,12 +24,16 @@ Rails.application.routes.draw do
   post "/sign-up", to: "users#create"
 #Get all drivers that belongs to company
   get "/users-company", to: "users#user_company"
+  #Get a user from company
+  get "/users-company/:id", to: "users#show_user_from_company"
   resources :users, except: [:create]
   resources :companies
   
   resources :vehicles
    # Get all the vehicles based on current_use and company Id
   get "/vehicles-company", to: "vehicles#vehicles_company_all" 
+   # Get one vehicle from company
+  get "/vehicles-company/:id", to: "vehicles#show_vehicle_from_company" 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
