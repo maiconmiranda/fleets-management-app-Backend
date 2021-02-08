@@ -65,6 +65,6 @@ class IncidentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def incident_params
-      params.require(:incident).permit(:description, :vehicle_id, :user_id, :daily_track_id)
+      params.require(:incident).permit(:description, :vehicle_id, :user_id, :daily_track_id, :company_id)
     end
 end

@@ -70,7 +70,7 @@ class DailyReportsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def daily_report_params
       params.require(:daily_report).permit(
-        :description, :vehicle_id, :user_id, :daily_track_id
+        :description, :vehicle_id, :user_id, :daily_track_id, :company_id
       )
     end
 end

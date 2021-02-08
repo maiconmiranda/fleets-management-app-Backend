@@ -70,7 +70,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :email, :password, :user_name, :driver_license_number, 
-         :driver_license_expiry, :company_id, :driver_id, :is_admin
+         :driver_license_expiry, :company_id, :driver_id, :is_admin, :is_chosen
       )
     end
 end
