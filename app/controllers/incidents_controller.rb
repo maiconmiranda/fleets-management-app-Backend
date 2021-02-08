@@ -9,6 +9,13 @@ class IncidentsController < ApplicationController
     render json: @incidents
   end
 
+      # GET all incidents from the company
+      def incidents_company_all
+        @user_company_incidents = current_user.company.incidents
+    
+        render json: @user_company_incidents 
+      end
+
   # GET /incidents/1
   def show
     render json: @incident

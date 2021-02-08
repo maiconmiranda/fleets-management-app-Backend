@@ -43,7 +43,7 @@ User.create(
 user = User.new(
     email: Faker::Internet.email,
     password: "password",
-    user_name: Company.find_by(id: 1).company_name,
+    user_name: Faker::Name.name,
     driver_license_number: Faker::DrivingLicence.usa_driving_licence,
     driver_license_expiry: Faker::Date.forward(days: 260),
     company_id: 1,
@@ -57,7 +57,7 @@ end
 user = User.new(
     email: Faker::Internet.email,
     password: "password",
-    user_name: Company.find_by(id: 1).company_name,
+    user_name: Faker::Name.name,
     driver_license_number: Faker::DrivingLicence.usa_driving_licence,
     driver_license_expiry: Faker::Date.forward(days: 260),
     company_id: 2,
@@ -216,10 +216,11 @@ end
   daily_track.save
 end
 
-#  Daily_report
+#  Daily_report for company 1
 5.times do
     daily_report = DailyReport.new(
         description: Faker::Movies::StarWars.quote,
+        company_id: 1,
         vehicle_id: 1,
         user_id: 2,
         daily_track_id: 1
@@ -227,13 +228,38 @@ end
     daily_report.save
 end
 
-#  Incidents
+#  Incidents for company 1
 2.times do
     incident = Incident.new(
         description: Faker::Movies::StarWars.quote,
+        company_id: 1,
         vehicle_id: 1,
         user_id: 2,
         daily_track_id: 1
+    )
+    incident.save
+end
+
+#  Daily_report for company 2
+5.times do
+    daily_report = DailyReport.new(
+        description: Faker::Movies::StarWars.quote,
+        company_id: 2,
+        vehicle_id: 13,
+        user_id: 14,
+        daily_track_id: 37
+    )
+    daily_report.save
+end
+
+#  Incidents for company 2
+2.times do
+    incident = Incident.new(
+        description: Faker::Movies::StarWars.quote,
+        company_id: 2,
+        vehicle_id: 1,
+        user_id: 14,
+        daily_track_id: 37
     )
     incident.save
 end

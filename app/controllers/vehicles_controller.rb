@@ -9,6 +9,13 @@ class VehiclesController < ApplicationController
     render json: @vehicles
   end
 
+  # GET all vehicles that belongs to company
+  def vehicles_company_all
+    @user_company_vehicles = current_user.company.vehicles
+
+    render json: @user_company_vehicles 
+  end
+
   # GET /vehicles/1
   def show
     render json: @vehicle

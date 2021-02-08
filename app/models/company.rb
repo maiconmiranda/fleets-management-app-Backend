@@ -7,4 +7,7 @@ class Company < ApplicationRecord
     validates :contact_number, presence: true
     has_many :vehicles
     has_many :users
+    has_many :daily_tracks
+    has_many :daily_reports
+    has_many :incidents
 end

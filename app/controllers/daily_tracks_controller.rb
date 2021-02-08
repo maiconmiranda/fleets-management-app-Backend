@@ -10,12 +10,12 @@ class DailyTracksController < ApplicationController
   end
 
   
-  # GET all daily 
-  def daily_tracks_all
-    user_company = current_user.company.users
-    @daily_tracks_belongs_to_company = user_company.joins(daily_tracks: :user)
+  # GET all daily tracks from the company
+  def daily_tracks_company_all
+    @user_company_daily_tracks = current_user.company.daily_tracks
+    @daily_tracks_count = @user_company_daily_tracks.count
 
-    render json: @daily_tracks
+    render json: @user_company_daily_tracks
   end
 
   # GET /daily_tracks/1

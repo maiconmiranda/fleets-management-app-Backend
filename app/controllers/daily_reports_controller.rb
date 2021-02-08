@@ -9,6 +9,13 @@ class DailyReportsController < ApplicationController
     render json: @daily_reports
   end
 
+    # GET all daily tracks from the company
+    def daily_reports_company_all
+      @user_company_daily_reports = current_user.company.daily_reports
+  
+      render json: @user_company_daily_reports 
+    end
+
   # GET /daily_reports/1
   def show
     render json: @daily_report
