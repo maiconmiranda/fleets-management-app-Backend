@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# create Company
 RSpec.describe "Companies", type: :request do
   describe "GET companies#index" do
     before(:example) do
